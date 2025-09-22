@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATH-FINDER - Ikigai Career Guidance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --border-color: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .nav-tab i {
+            margin-right: 0.5rem;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Forms */
+        .form-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Assessment Sections */
+        .assessment-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .assessment-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .assessment-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Rating Grid */
+        .rating-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .rating-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .rating-item:hover {
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rating-item label {
+            flex: 1;
+            margin: 0;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Star Rating */
+        .rating-stars {
+            display: flex;
+            gap: 0.25rem;
+            direction: rtl;
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--border-color);
+            transition: color 0.2s ease;
+            width: auto !important;
+            flex: none !important;
+        }
+
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label,
+        .rating-stars input:checked ~ label {
+            color: #fbbf24;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-primary);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Button Groups */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Results Section */
+        .results-container {
+            text-align: center;
+        }
+
+        .loading {
+            display: none;
+            padding: 3rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-light);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .score-display h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .score-percentage {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Progress Bars */
+        .progress-section {
+            margin: 2rem 0;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .progress-item {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .progress-item h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: var(--border-light);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-value {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Recommendations */
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .recommendation-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .recommendation-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .recommendation-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .match-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--success-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-card p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            height: 400px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                flex: none;
+                min-width: auto;
+            }
+
+            .tab-content {
+                padding: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .rating-item {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+
+            .score-percentage {
+                font-size: 3rem;
+            }
+
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Additional Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-compass"></i> PATH-FINDER</h1>
+            <p>Discover Your Life's Purpose Through Ikigai</p>
+        </div>
+
+        <div class="main-content">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="info">
+                    <i class="fas fa-user"></i> Personal Info
+                </button>
+                <button class="nav-tab" data-tab="passion">
+                    <i class="fas fa-heart"></i> What You Love
+                </button>
+                <button class="nav-tab" data-tab="skills">
+                    <i class="fas fa-star"></i> What You're Good At
+                </button>
+                <button class="nav-tab" data-tab="mission">
+                    <i class="fas fa-globe"></i> What World Needs
+                </button>
+                <button class="nav-tab" data-tab="vocation">
+                    <i class="fas fa-dollar-sign"></i> What You Can Be Paid For
+                </button>
+                <button class="nav-tab" data-tab="results">
+                    <i class="fas fa-chart-line"></i> Your Ikigai
+                </button>
+            </div>
+
+            <!-- Personal Information Tab -->
+            <div id="info" class="tab-content active">
+                <div class="form-section">
+                    <h2 class="text-center mb-4">Let's Get Started</h2>
+                    <form id="personalInfo">
+                        <div class="form-group">
+                            <label for="userName">Full Name</label>
+                            <input type="text" id="userName" name="userName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userAge">Age</label>
+                            <input type="number" id="userAge" name="userAge" min="16" max="100" placeholder="Enter your age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userType">Career Stage</label>
+                            <select id="userType" name="userType" required>
+                                <option value="">Select your career stage</option>
+                                <option value="student">Student</option>
+                                <option value="graduate">Recent Graduate</option>
+                                <option value="professional">Working Professional</option>
+                                <option value="career_changer">Career Changer</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" onclick="nextTab('passion')">
+                                Begin Assessment <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Passion Tab -->
+            <div id="passion" class="tab-content">
+                <div class="assessment-section">
+                    <h3><i class="fas fa-heart"></i> What You Love</h3>
+                    <p>Rate your passion for these areas (1 = Not interested, 5 = Extremely passionate)</p>
+                    <div class="rating-grid" id="passionRatings"></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline" onclick="previousTab('info')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('skills')">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills" class="tab-content">
+                <div class="assessment-section">
+                    <h3><i class="fas fa-star"></i> What You're Good At</h3>
+                    <p>Rate your skill level in these areas (1 = Beginner, 5 = Expert)</p>
+                    <div class="rating-grid" id="skillsRatings"></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline" onclick="previousTab('passion')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('mission')">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mission Tab -->
+            <div id="mission" class="tab-content">
+                <div class="assessment-section">
+                    <h3><i class="fas fa-globe"></i> What the World Needs</h3>
+                    <p>Rate how important these global needs are to you (1 = Not important, 5 = Extremely important)</p>
+                    <div class="rating-grid" id="missionRatings"></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline" onclick="previousTab('skills')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('vocation')">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vocation Tab -->
+            <div id="vocation" class="tab-content">
+                <div class="assessment-section">
+                    <h3><i class="fas fa-dollar-sign"></i> What You Can Be Paid For</h3>
+                    <p>Rate your interest in these monetization areas (1 = Not interested, 5 = Very interested)</p>
+                    <div class="rating-grid" id="vocationRatings"></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline" onclick="previousTab('mission')">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="calculateIkigai()">
+                        <i class="fas fa-calculator"></i> Calculate My Ikigai
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Tab -->
+            <div id="results" class="tab-content">
+                <div class="results-container">
+                    <div class="loading" id="loadingIndicator">
+                        <div class="spinner"></div>
+                        <h3>Analyzing Your Ikigai...</h3>
+                        <p>Please wait while we process your responses</p>
+                    </div>
+                    
+                    <div id="resultsContent" class="hidden">
+                        <div class="score-display">
+                            <h2>Your Ikigai Score</h2>
+                            <div class="score-percentage" id="overallScore">0%</div>
+                            <p>Based on your responses, here's your personalized career guidance</p>
+                        </div>
+
+                        <div class="progress-section">
+                            <h3 class="text-center mb-4">Ikigai Intersections</h3>
+                            <div class="progress-grid">
+                                <div class="progress-item">
+                                    <h4>Passion ∩ Mission</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="passionMission" style="width: 0%"></div>
+                                    </div>
+                                    <div class="progress-value" id="passionMissionValue">0%</div>
+                                </div>
+                                <div class="progress-item">
+                                    <h4>Mission ∩ Profession</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="missionProfession" style="width: 0%"></div>
+                                    </div>
+                                    <div class="progress-value" id="missionProfessionValue">0%</div>
+                                </div>
+                                <div class="progress-item">
+                                    <h4>Profession ∩ Vocation</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="professionVocation" style="width: 0%"></div>
+                                    </div>
+                                    <div class="progress-value" id="professionVocationValue">0%</div>
+                                </div>
+                                <div class="progress-item">
+                                    <h4>Vocation ∩ Passion</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="vocationPassion" style="width: 0%"></div>
+                                    </div>
+                                    <div class="progress-value" id="vocationPassionValue">0%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recommendations" id="careerRecommendations">
+                            <!-- Dynamic content -->
+                        </div>
+
+                        <div class="btn-group mt-4">
+                            <button type="button" class="btn btn-success" onclick="generatePDF()">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="restartAssessment()">
+                                <i class="fas fa-refresh"></i> Retake Assessment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Assessment data
+        const assessmentData = {
+            passion: [
+                'Creative Arts & Design',
+                'Technology & Innovation',
+                'Helping Others',
+                'Problem Solving',
+                'Leadership & Management',
+                'Travel & Exploration',
+                'Teaching & Education',
+                'Health & Wellness',
+                'Environmental Sustainability',
+                'Sports & Fitness'
+            ],
+            skills: [
+                'Communication',
+                'Technical Skills',
+                'Analytical Thinking',
+                'Creativity',
+                'Project Management',
+                'Data Analysis',
+                'Public Speaking',
+                'Writing',
+                'Team Collaboration',
+                'Strategic Planning'
+            ],
+            mission: [
+                'Environmental Sustainability',
+                'Education & Learning',
+                'Healthcare & Wellness',
+                'Technology Advancement',
+                'Social Justice',
+                'Economic Development',
+                'Cultural Preservation',
+                'Scientific Research',
+                'Community Building',
+                'Mental Health Awareness'
+            ],
+            vocation: [
+                'Software Development',
+                'Consulting Services',
+                'Creative Services',
+                'Healthcare Services',
+                'Business Management',
+                'Education & Training',
+                'Sales & Marketing',
+                'Financial Services',
+                'Research & Development',
+                'Non-profit Leadership'
+            ]
+        };
+
+        // Career database
+        const careerDatabase = [
+            {
+                title: "UX/UI Designer",
+                passion: ["Creative Arts & Design", "Problem Solving", "Technology & Innovation"],
+                skills: ["Creativity", "Technical Skills", "Analytical Thinking"],
+                mission: ["Technology Advancement", "Education & Learning"],
+                vocation: ["Creative Services", "Software Development"],
+                description: "Design intuitive digital experiences that solve real user problems and enhance human-computer interaction."
+            },
+            {
+                title: "Data Scientist",
+                passion: ["Problem Solving", "Technology & Innovation", "Analytical Thinking"],
+                skills: ["Data Analysis", "Technical Skills", "Analytical Thinking"],
+                mission: ["Technology Advancement", "Scientific Research"],
+                vocation: ["Software Development", "Consulting Services"],
+                description: "Extract meaningful insights from complex data to drive business decisions and scientific discoveries."
+            },
+            {
+                title: "Sustainability Consultant",
+                passion: ["Environmental Sustainability", "Problem Solving", "Helping Others"],
+                skills: ["Analytical Thinking", "Project Management", "Communication"],
+                mission: ["Environmental Sustainability", "Economic Development"],
+                vocation: ["Consulting Services", "Non-profit Leadership"],
+                description: "Help organizations implement sustainable practices and reduce their environmental impact."
+            },
+            {
+                title: "Product Manager",
+                passion: ["Technology & Innovation", "Leadership & Management", "Problem Solving"],
+                skills: ["Project Management", "Strategic Planning", "Communication"],
+                mission: ["Technology Advancement", "Economic Development"],
+                vocation: ["Business Management", "Consulting Services"],
+                description: "Lead product development from conception to market, bridging user needs with business goals."
+            },
+            {
+                title: "Healthcare Technology Specialist",
+                passion: ["Technology & Innovation", "Health & Wellness", "Helping Others"],
+                skills: ["Technical Skills", "Analytical Thinking", "Communication"],
+                mission: ["Healthcare & Wellness", "Technology Advancement"],
+                vocation: ["Healthcare Services", "Software Development"],
+                description: "Implement technology solutions in healthcare to improve patient outcomes and streamline care delivery."
+            },
+            {
+                title: "Digital Marketing Strategist",
+                passion: ["Creative Arts & Design", "Technology & Innovation", "Communication"],
+                skills: ["Creativity", "Data Analysis", "Strategic Planning"],
+                mission: ["Economic Development", "Technology Advancement"],
+                vocation: ["Sales & Marketing", "Creative Services"],
+                description: "Create data-driven marketing campaigns that connect brands with their audiences across digital platforms."
+            }
+        ];
+
+        // User responses storage
+        let userResponses = {
+            personal: {},
+            passion: {},
+            skills: {},
+            mission: {},
+            vocation: {}
+        };
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            setupRatingGrids();
+            setupTabNavigation();
+        });
+
+        function setupRatingGrids() {
+            ['passion', 'skills', 'mission', 'vocation'].forEach(category => {
+                const container = document.getElementById(category + 'Ratings');
+                const items = assessmentData[category];
+                
+                items.forEach((item, index) => {
+                    const ratingItem = createRatingItem(item, category, index);
+                    container.appendChild(ratingItem);
+                });
+            });
+        }
+
+        function createRatingItem(item, category, index) {
+            const div = document.createElement('div');
+            div.className = 'rating-item';
+            
+            div.innerHTML = `
+                <label>${item}</label>
+                <div class="rating-stars">
+                    ${[5,4,3,2,1].map(value => `
+                        <input type="radio" id="${category}_${index}_${value}" name="${category}_${index}" value="${value}">
+                        <label for="${category}_${index}_${value}">★</label>
+                    `).join('')}
+                </div>
+            `;
+            
+            const radioInputs = div.querySelectorAll('input[type="radio"]');
+            radioInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    userResponses[category][item] = parseInt(this.value);
+                });
+            });
+            
+            return div;
+        }
+
+        function setupTabNavigation() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    if (targetTab !== 'results' || userResponses.personal.userName) {
+                        switchTab(targetTab);
+                    }
+                });
+            });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function nextTab(tabId) {
+            if (validateCurrentTab()) {
+                switchTab(tabId);
+            }
+        }
+
+        function previousTab(tabId) {
+            switchTab(tabId);
+        }
+
+        function validateCurrentTab() {
+            const activeTab = document.querySelector('.tab-content.active');
+            
+            if (activeTab.id === 'info') {
+                const form = document.getElementById('personalInfo');
+                const formData = new FormData(form);
+                
+                if (!formData.get('userName') || !formData.get('userAge') || !formData.get('userType')) {
+                    alert('Please fill in all personal information fields.');
+                    return false;
+                }
+                
+                userResponses.personal = {
+                    userName: formData.get('userName'),
+                    userAge: parseInt(formData.get('userAge')),
+                    userType: formData.get('userType')
+                };
+            }
+            
+            return true;
+        }
+
+        function calculateIkigai() {
+            if (!validateAllSections()) {
+                alert('Please complete all assessment sections before calculating your Ikigai.');
+                return;
+            }
+            
+            switchTab('results');
+            document.getElementById('loadingIndicator').classList.add('show');
+            
+            setTimeout(() => {
+                const results = processIkigaiResults();
+                displayResults(results);
+                document.getElementById('loadingIndicator').classList.remove('show');
+                document.getElementById('resultsContent').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function validateAllSections() {
+            const sections = ['passion', 'skills', 'mission', 'vocation'];
+            return sections.every(section => {
+                return Object.keys(userResponses[section]).length > 0;
+            });
+        }
+
+        function processIkigaiResults() {
+            const quadrantAverages = {};
+            ['passion', 'skills', 'mission', 'vocation'].forEach(quadrant => {
+                const responses = Object.values(userResponses[quadrant]);
+                quadrantAverages[quadrant] = responses.reduce((sum, val) => sum + val, 0) / responses.length;
+            });
+            
+            const intersections = {
+                passionMission: (quadrantAverages.passion + quadrantAverages.mission) / 2,
+                missionProfession: (quadrantAverages.mission + quadrantAverages.skills) / 2,
+                professionVocation: (quadrantAverages.skills + quadrantAverages.vocation) / 2,
+                vocationPassion: (quadrantAverages.vocation + quadrantAverages.passion) / 2
+            };
+            
+            const overallScore = Object.values(intersections).reduce((sum, val) => sum + val, 0) / 4;
+            const recommendations = generateCareerRecommendations();
+            
+            return {
+                quadrantAverages,
+                intersections,
+                overallScore,
+                recommendations
+            };
+        }
+
+        function generateCareerRecommendations() {
+            return careerDatabase.map(career => {
+                let matchScore = 0;
+                let totalPossible = 0;
+                
+                ['passion', 'skills', 'mission', 'vocation'].forEach(category => {
+                    career[category].forEach(item => {
+                        if (userResponses[category][item]) {
+                            matchScore += userResponses[category][item];
+                        }
+                        totalPossible += 5;
+                    });
+                });
+                
+                const matchPercentage = Math.round((matchScore / totalPossible) * 100);
+                
+                return {
+                    ...career,
+                    matchPercentage
+                };
+            }).sort((a, b) => b.matchPercentage - a.matchPercentage).slice(0, 3);
+        }
+
+        function displayResults(results) {
+            const overallPercentage = Math.round((results.overallScore / 5) * 100);
+            document.getElementById('overallScore').textContent = overallPercentage + '%';
+            
+            Object.keys(results.intersections).forEach(intersection => {
+                const percentage = Math.round((results.intersections[intersection] / 5) * 100);
+                const element = document.getElementById(intersection);
+                const valueElement = document.getElementById(intersection + 'Value');
+                
+                setTimeout(() => {
+                    element.style.width = percentage + '%';
+                    valueElement.textContent = percentage + '%';
+                }, 500);
+            });
+            
+            displayCareerRecommendations(results.recommendations);
+        }
+
+        function displayCareerRecommendations(recommendations) {
+            const container = document.getElementById('careerRecommendations');
+            container.innerHTML = '<h3 class="text-center mb-4">Your Top Career Matches</h3>';
+            
+            recommendations.forEach((career, index) => {
+                const card = document.createElement('div');
+                card.className = 'recommendation-card';
+                card.innerHTML = `
+                    <h4>${career.title}</h4>
+                    <div class="match-badge">
+                        <i class="fas fa-check"></i> ${career.matchPercentage}% Match
+                    </div>
+                    <p>${career.description}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('PATH-FINDER: Ikigai Career Report', 20, 30);
+            
+            doc.setFontSize(12);
+            doc.text(`Name: ${userResponses.personal.userName}`, 20, 50);
+            doc.text(`Age: ${userResponses.personal.userAge}`, 20, 60);
+            doc.text(`Career Stage: ${userResponses.personal.userType}`, 20, 70);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 80);
+            
+            doc.setFontSize(14);
+            doc.text('Assessment Results:', 20, 100);
+            
+            const overallScore = document.getElementById('overallScore').textContent;
+            doc.text(`Overall Ikigai Score: ${overallScore}`, 20, 120);
+            
+            doc.text('Top Career Recommendations:', 20, 140);
+            const recommendations = Array.from(document.querySelectorAll('.recommendation-card'));
+            recommendations.forEach((card, index) => {
+                const title = card.querySelector('h4').textContent;
+                const match = card.querySelector('.match-badge').textContent;
+                doc.text(`${index + 1}. ${title} - ${match}`, 20, 160 + (index * 20));
+            });
+            
+            doc.save(`ikigai-report-${userResponses.personal.userName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
+        }
+
+        function restartAssessment() {
+            if (confirm('Are you sure you want to restart the assessment? All responses will be lost.')) {
+                userResponses = {
+                    personal: {},
+                    passion: {},
+                    skills: {},
+                    mission: {},
+                    vocation: {}
+                };
+                
+                document.getElementById('personalInfo').reset();
+                document.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.checked = false;
+                });
+                
+                switchTab('info');
+                document.getElementById('resultsContent').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
