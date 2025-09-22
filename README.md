@@ -1,6 +1,18 @@
-# Career Guidance with Ikigai Framework
+# 🌟 PATH-FINDER: Ikigai Career Guidance Platform
 
-This project integrates the **Ikigai model** into a psychometric and job market analysis web application.
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue)](https://smdhussain06.github.io/PATH-FINDER/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project integrates the **Ikigai model** into a comprehensive psychometric and job market analysis web application.
+
+## 🚀 Quick Links
+
+- **[🌐 Live Demo](https://smdhussain06.github.io/PATH-FINDER/)** - Visit our GitHub Pages showcase
+- **[📱 Try the App](https://share.streamlit.io)** - Launch the Streamlit application  
+- **[🛠️ Deployment Guide](DEPLOYMENT.md)** - How to deploy your own instance
+- **[📸 Features Showcase](FEATURES.md)** - Detailed application walkthrough
 
 ## 🌸 What is Ikigai?
 
@@ -112,6 +124,34 @@ Includes 8 careers mapped to Ikigai intersections:
 
 Each career includes detailed Ikigai quadrant mappings for authentic alignment assessment.
 
+## 🌐 GitHub Pages Showcase
+
+Visit our **[GitHub Pages site](https://smdhussain06.github.io/PATH-FINDER/)** for:
+- 🎯 Interactive project overview
+- 📊 Feature demonstrations  
+- 🚀 Live deployment options
+- 💻 Technical architecture details
+
+## 📚 Additional Resources
+
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Complete deployment guide for multiple platforms
+- **[FEATURES.md](FEATURES.md)** - Detailed feature showcase with visual documentation
+- **[GitHub Issues](https://github.com/smdhussain06/PATH-FINDER/issues)** - Bug reports and feature requests
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ---
 
 *Discover your Ikigai and find work that truly matters.* 🌸
+
+**Built with ❤️ using Streamlit and the timeless wisdom of Ikigai philosophy**
