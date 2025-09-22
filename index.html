@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATH-FINDER - Discover Your Career Path</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-compass"></i>
+                <span>PATH-FINDER</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <button class="btn btn-primary" onclick="openUserTypeModal()">Get Started</button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Discover Your Perfect 
+                    <span class="highlight">Career Path</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Comprehensive career guidance through psychometric analysis, Ikigai philosophy, 
+                    and personalized roadmaps to help you find your life's purpose.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="openUserTypeModal()">
+                        <i class="fas fa-rocket"></i>
+                        Start Your Journey
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="scrollToSection('features')">
+                        <i class="fas fa-play"></i>
+                        Learn More
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Users Guided</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.9</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comprehensive Career Analysis</h2>
+                <p>Our multi-dimensional approach combines proven methodologies to provide accurate career guidance</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Psychometric Assessment</h3>
+                    <p>Comprehensive personality and aptitude testing based on proven psychological frameworks</p>
+                    <ul class="feature-list">
+                        <li>25+ scientific questions</li>
+                        <li>Big Five personality traits</li>
+                        <li>Cognitive abilities assessment</li>
+                        <li>Work style preferences</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-yin-yang"></i>
+                    </div>
+                    <h3>Ikigai Analysis</h3>
+                    <p>Discover your life's purpose using the ancient Japanese philosophy of Ikigai</p>
+                    <ul class="feature-list">
+                        <li>What you love (Passion)</li>
+                        <li>What you're good at (Profession)</li>
+                        <li>What the world needs (Mission)</li>
+                        <li>What you can be paid for (Vocation)</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Job Market Analysis</h3>
+                    <p>Real-time insights into career opportunities and market trends</p>
+                    <ul class="feature-list">
+                        <li>Industry growth projections</li>
+                        <li>Skill demand analysis</li>
+                        <li>Salary expectations</li>
+                        <li>Career progression paths</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Personalized Roadmap</h3>
+                    <p>Step-by-step guidance to achieve your career goals</p>
+                    <ul class="feature-list">
+                        <li>12-week learning plans</li>
+                        <li>Skill development milestones</li>
+                        <li>Resource recommendations</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Types Section -->
+    <section id="user-types" class="user-types">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tailored for Every Career Stage</h2>
+                <p>Customized guidance based on your current life situation and career aspirations</p>
+            </div>
+            
+            <div class="user-types-grid">
+                <div class="user-type-card">
+                    <div class="user-type-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Students</h3>
+                    <p>Exploring academic interests and early career paths</p>
+                    <div class="user-type-features">
+                        <span>Academic guidance</span>
+                        <span>Skill development</span>
+                        <span>University planning</span>
+                    </div>
+                </div>
+
+                <div class="user-type-card">
+                    <div class="user-type-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Graduates</h3>
+                    <p>Transitioning from education to professional life</p>
+                    <div class="user-type-features">
+                        <span>Job market entry</span>
+                        <span>Skills assessment</span>
+                        <span>Industry matching</span>
+                    </div>
+                </div>
+
+                <div class="user-type-card">
+                    <div class="user-type-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Professionals</h3>
+                    <p>Advancing in current career or exploring growth opportunities</p>
+                    <div class="user-type-features">
+                        <span>Career advancement</span>
+                        <span>Skill upgrading</span>
+                        <span>Leadership development</span>
+                    </div>
+                </div>
+
+                <div class="user-type-card">
+                    <div class="user-type-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Career Changers</h3>
+                    <p>Making strategic career transitions and pivots</p>
+                    <div class="user-type-features">
+                        <span>Transferable skills</span>
+                        <span>Industry transition</span>
+                        <span>Rebranding strategy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About PATH-FINDER</h2>
+                    <p>PATH-FINDER combines cutting-edge psychometric assessment with ancient wisdom to provide comprehensive career guidance. Our platform helps thousands of users discover their true calling and create actionable plans for success.</p>
+                    
+                    <div class="about-points">
+                        <div class="about-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Evidence-based assessments</span>
+                        </div>
+                        <div class="about-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Privacy-first approach</span>
+                        </div>
+                        <div class="about-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Completely free to use</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="ikigai-preview">
+                        <div class="ikigai-circle">
+                            <div class="ikigai-text">Your Perfect Career</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Type Selection Modal -->
+    <div id="userTypeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Tell us about yourself</h2>
+                <p>Choose the option that best describes your current situation</p>
+                <button class="modal-close" onclick="closeUserTypeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="user-type-options">
+                    <div class="user-type-option" data-type="student">
+                        <div class="option-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Student</h3>
+                        <p>Currently in high school, college, or university</p>
+                    </div>
+
+                    <div class="user-type-option" data-type="graduate">
+                        <div class="option-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Recent Graduate</h3>
+                        <p>Recently completed education and looking for first job</p>
+                    </div>
+
+                    <div class="user-type-option" data-type="professional">
+                        <div class="option-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Working Professional</h3>
+                        <p>Currently employed and looking for career growth</p>
+                    </div>
+
+                    <div class="user-type-option" data-type="career-changer">
+                        <div class="option-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Career Changer</h3>
+                        <p>Looking to switch careers or industries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="nav-brand">
+                        <i class="fas fa-compass"></i>
+                        <span>PATH-FINDER</span>
+                    </div>
+                    <p>Discover your perfect career path through comprehensive analysis and personalized guidance.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="#features">Features</a>
+                        <a href="#about">About</a>
+                        <a href="#user-types">User Types</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Assessments</h4>
+                        <a href="pages/psychometric.html">Psychometric Test</a>
+                        <a href="pages/ikigai.html">Ikigai Analysis</a>
+                        <a href="pages/jobmarket.html">Job Market</a>
+                        <a href="pages/roadmap.html">Roadmap</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PATH-FINDER. Built with ❤️ for career seekers everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/dataHandler.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychometric Assessment - PATH-FINDER</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-compass"></i>
+                <span>PATH-FINDER</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Assessment</a>
+                <a href="ikigai.html" class="nav-link">Ikigai</a>
+                <a href="jobmarket.html" class="nav-link">Job Market</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Header -->
+    <div class="progress-header">
+        <div class="container">
+            <div class="progress-info">
+                <h2>Psychometric Assessment</h2>
+                <p>Answer honestly to get the most accurate results</p>
+            </div>
+            <div class="progress-tracker">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Container -->
+    <main class="assessment-main">
+        <div class="container">
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="assessment-screen active">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h1>Psychometric Assessment</h1>
+                    <p class="welcome-subtitle">
+                        This comprehensive assessment will help us understand your personality traits, 
+                        work style preferences, values, and skills to provide personalized career recommendations.
+                    </p>
+                    
+                    <div class="assessment-info">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <h3>15-20 Minutes</h3>
+                                <p>Estimated completion time</p>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-question-circle"></i>
+                                <h3>25 Questions</h3>
+                                <p>Carefully crafted assessment items</p>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Detailed Results</h3>
+                                <p>Comprehensive personality profile</p>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-save"></i>
+                                <h3>Auto-Save</h3>
+                                <p>Progress saved automatically</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instructions">
+                        <h3>Instructions:</h3>
+                        <ul>
+                            <li>Answer each question honestly based on your true preferences</li>
+                            <li>There are no right or wrong answers</li>
+                            <li>Choose the response that best represents you</li>
+                            <li>You can navigate between questions using the Previous/Next buttons</li>
+                            <li>Your progress is saved automatically</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" onclick="startAssessment()">
+                        <i class="fas fa-play"></i>
+                        Start Assessment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="questionScreen" class="assessment-screen">
+                <div class="question-container">
+                    <div class="question-header">
+                        <div class="question-number">
+                            Question <span id="currentQuestionNum">1</span> of <span id="totalQuestions">25</span>
+                        </div>
+                        <div class="question-category">
+                            <span id="questionCategory"></span>
+                        </div>
+                    </div>
+
+                    <div class="question-content">
+                        <h2 id="questionText"></h2>
+                        <div class="options-container" id="optionsContainer">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="question-navigation">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                            Next
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="assessment-screen">
+                <div class="results-content">
+                    <div class="results-header">
+                        <div class="results-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h1>Assessment Complete!</h1>
+                        <p>Your psychometric profile has been generated</p>
+                    </div>
+
+                    <!-- Personality Profile -->
+                    <div class="profile-section">
+                        <h2>Your Personality Profile</h2>
+                        <div class="personality-grid" id="personalityResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Work Style -->
+                    <div class="profile-section">
+                        <h2>Work Style Preferences</h2>
+                        <div class="workstyle-grid" id="workstyleResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Values -->
+                    <div class="profile-section">
+                        <h2>Values & Motivations</h2>
+                        <div class="values-grid" id="valuesResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="profile-section">
+                        <h2>Skills Assessment</h2>
+                        <div class="skills-grid" id="skillsResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn btn-secondary" onclick="retakeAssessment()">
+                            <i class="fas fa-redo"></i>
+                            Retake Assessment
+                        </button>
+                        <button class="btn btn-primary" onclick="proceedToIkigai()">
+                            Continue to Ikigai Analysis
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-compass"></i>
+                        <span>PATH-FINDER</span>
+                    </div>
+                    <p>Discover your perfect career path with comprehensive analysis and personalized guidance.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Assessment</h4>
+                        <a href="#" class="active">Psychometric Test</a>
+                        <a href="ikigai.html">Ikigai Analysis</a>
+                        <a href="jobmarket.html">Job Market</a>
+                        <a href="roadmap.html">Learning Roadmap</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <a href="../index.html#about">About</a>
+                        <a href="../index.html#how-it-works">How It Works</a>
+                        <a href="https://github.com/smdhussain06/PATH-FINDER">GitHub</a>
+                        <a href="#privacy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PATH-FINDER. Built with ❤️ for career discovery.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../data/questions_db.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/dataHandler.js"></script>
+    <script src="../js/psychometric.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
