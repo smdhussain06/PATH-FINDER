@@ -1,0 +1,23 @@
+# PATH-FINDER: Complete Career Discovery Platform
+# Requirements file for unified application
+
+# Core Streamlit and Data Processing
+streamlit>=1.28.0
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+
+# Visualization Libraries
+plotly>=5.0.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# PDF Generation
+reportlab>=4.0.0
+
+# Additional Scientific Computing
+scipy>=1.8.0
+
+# Optional: Enhanced Analytics (uncomment if needed)
+# altair>=4.0.0
+# bokeh>=2.4.0
